@@ -1,0 +1,56 @@
+﻿<Window x:Name="window" x:Class="StorageClientApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StorageClientApp"
+        mc:Ignorable="d"
+        Title="Склад Decorita" Height="642" Width="1115">
+    <Grid RenderTransformOrigin="0.5,0.5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50.005"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="299"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1" SpreadMethod="Pad" MappingMode="RelativeToBoundingBox">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="#FF2B4E24" Offset="1"/>
+                <GradientStop Color="#FFF48A44" Offset="0.687"/>
+                <GradientStop Color="#FF2B4E24" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ListBox x:Name="ItemsView" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=35}" Margin="0,50,0,0" Grid.RowSpan="2"/>
+        <Grid Margin="0,50,0,0" Grid.RowSpan="2">
+            <ListBox >
+                <ListBoxItem Height="50">
+                    <Grid>
+                        <Label Content="Общий вид" />
+                        <ComboBox x:Name="ChooseSample" IsSynchronizedWithCurrentItem="False" SelectionChanged="ChooseSample_SelectionChanged" Margin="78,0,-195,0"/>
+                    </Grid>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Grid>
+                        <Button x:Name="CreateArticulBtn" Content="Добавить артикул" Margin="0,0,-14,-28" Click="Button_Click"></Button>
+                        <Button x:Name="CreateRecordBtn" Content="Создать запись" Margin="122,0,-141,-28"></Button>
+                        <Button x:Name="ViewRecordsBtn" Content="Просмотр записей" Margin="0,33,-14,-61"/>
+                    </Grid>
+                </ListBoxItem>
+            </ListBox>
+        </Grid>
+        <ToolBarPanel Grid.Column="1"/>
+
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,22 @@
+﻿<Window x:Class="StorageClientApp.RecordWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StorageClientApp"
+        mc:Ignorable="d"
+        Title="RecordWindow" Height="436" Width="760">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="287*"/>
+            <ColumnDefinition Width="473*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button Content="Добавить артикул в запись" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="42" Width="267"/>
+        <Button Content="Сохранить запись" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="42" Width="126" Click="Button_Click"/>
+        <Button Content="Отмена" HorizontalAlignment="Left" Margin="141,0,0,10" VerticalAlignment="Bottom" Height="42" Width="136" Click="Button_Click" RenderTransformOrigin="0.394,0.712"/>
+        <Calendar HorizontalAlignment="Center" VerticalAlignment="Center" Height="196" Width="267"/>
+        <Label Content="Дата записи" HorizontalAlignment="Left" Margin="73,86,0,0" VerticalAlignment="Top" Width="136"/>
+
+    </Grid>
+</Window>
