@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StorageDBO.Entities.Base;
 
-namespace StorageDBO.Entities
+namespace StorageDBO.Entities;
+
+public class ArticulGroup : BaseEntity<int>
 {
-    public class ArticulGroup
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public List<Articul> Articuls { get; set; }
-
-        public ArticulGroup() { Articuls = new List<Articul>(); }
-    }
+    public required string Name { get; set; }
+    public ICollection<Articul> Articuls { get; set; } = [];
 }
