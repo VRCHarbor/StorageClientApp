@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using StorageDBO.Data;
+using StorageDBO.Entities.Base;
 
 namespace StorageClientApp
 {
@@ -22,9 +23,17 @@ namespace StorageClientApp
     public partial class RecordWindow : Window
     {
 
-        StorageDBContext Ctx;
+        public enum RecordType
+        {
+            Income,
+            Expence
+        } 
 
-        
+        RecordType recordType { get; set; }
+
+        StorageDBContext Ctx { get; set; }
+
+        ChangeRecord Record { get; set; }
 
         bool IsEditing { get; set; }
 
@@ -33,21 +42,82 @@ namespace StorageClientApp
             InitializeComponent();
         }
 
-        public RecordWindow(StorageDBContext ctx)
+        public RecordWindow(StorageDBContext ctx, RecordType rt = RecordType.Income) : this() 
         {
             Ctx = ctx;
 
+            switch (rt)
+            {
+                case RecordType.Income: Record = new InRecord(); break;
+                case RecordType.Expence: Record = new OutRecord(); break;
+            }
+
+            Ctx.Add(Record);
+            Ctx.SaveChanges();
+
+            recordType = rt;
             IsEditing = false;
+        }
+
+        public RecordWindow(StorageDBContext ctx, ChangeRecord record, RecordType rt = RecordType.Income) : this()
+        {
+            Record = record;
+            Ctx = ctx;
+            recordType = rt;
+            IsEditing = true;
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if(IsEditing) 
-            {
+            base.OnClosing(e);
+        }
 
+        private void SaveRecordBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            Record.ChangeDate = DateOnly.FromDateTime(RecordDateCalendar.SelectedDate ?? DateTime.Today);
+
+
+            switch (recordType)
+            {
+                case RecordType.Income: 
+                    {
+                        if (IsEditing)
+                        {
+                            Ctx.Incomes.Update((InRecord)Record);
+                        }
+                        else
+                        {
+                            Ctx.Incomes.Add((InRecord)Record);
+                        }
+                    } break;
+                case RecordType.Expence:
+                    {
+                        if (IsEditing)
+                        {
+                            Ctx.Expenses.Update((OutRecord)Record);
+                        }
+                        else
+                        {
+                            Ctx.Expenses.Add((OutRecord)Record);
+                        }
+                    }
+                    break;
             }
 
-            base.OnClosing(e);
+            Ctx.SaveChanges();
+            Close();
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void AddArticulToRecordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new ChooseArticulForRecord(Ctx, Record, recordType).ShowDialog();
         }
     }
 }

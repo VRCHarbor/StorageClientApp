@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using StorageDBO.Data;
 using StorageUserClientElementsLib;
 
 namespace StorageClientApp
@@ -19,7 +19,9 @@ namespace StorageClientApp
     public partial class MainWindow : Window
     {
 
-        Dictionary<string, List<ArticulWithCountViewModelEdit>> samples = new Dictionary<string, List<ArticulWithCountViewModelEdit>>();
+        Dictionary<string, List<ArticulWithCountViewModel>> samples = new Dictionary<string, List<ArticulWithCountViewModel>>();
+
+        StorageDBContext Ctx { get; set; }
 
         public MainWindow()
         {
@@ -30,13 +32,16 @@ namespace StorageClientApp
             ChooseSample.SelectedIndex = 0;
 
             ItemsView.ItemsSource = samples[(string)ChooseSample.SelectedItem];
+            var opt = new Microsoft.EntityFrameworkCore.DbContextOptions<StorageDBContext>();
+
+            Ctx = new(opt);
         }
 
         void InitSamples()
         {
-            samples.Add("Приход", new List<ArticulWithCountViewModelEdit>());
-            samples.Add("Расход", new List<ArticulWithCountViewModelEdit>());
-            samples.Add("Остаток", new List<ArticulWithCountViewModelEdit>());
+            samples.Add("Приход", new List<ArticulWithCountViewModel>());
+            samples.Add("Расход", new List<ArticulWithCountViewModel>());
+            samples.Add("Остаток", new List<ArticulWithCountViewModel>());
 
             var rnd = new Random(222_222_222);
 
@@ -44,7 +49,7 @@ namespace StorageClientApp
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    samples[key].Add(new ArticulWithCountViewModelEdit($"{key}/{i}:", rnd.Next(20_00)));
+                    samples[key].Add(new ArticulWithCountViewModel($"{key}/{i}:", rnd.Next(20_00)));
                 }
             }
 
@@ -53,6 +58,16 @@ namespace StorageClientApp
         private void ChooseSample_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ItemsView.ItemsSource = samples[(string)ChooseSample.SelectedItem];
+        }
+
+        private void RecordsViewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            while ((new RecordsView(Ctx).ShowDialog()).Value) ;
+        }
+
+        private void ArticlesViewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            while ((new EditArticles(Ctx).ShowDialog()).Value) ;
         }
     }
 }

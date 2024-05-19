@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="StorageUserClientElementsLib.RecordString"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StorageUserClientElementsLib"
+             mc:Ignorable="d" Height="58" Width="353">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="184*"/>
+            <ColumnDefinition Width="169*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="RecordDateLabel" Content="Label" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="87" Height="26"/>
+        <Button x:Name="EditBtn" Grid.Column="1" Content="✏" Margin="0,16,85,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="33" Background="#FF99FF98" Click="EditBtn_Click"/>
+        <Button x:Name="DeleteBtn" Grid.Column="1" Content="🗑️" Margin="0,16,47,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="33" Background="#FFFC4A4A" Click="DeleteBtn_Click"/>
+
+    </Grid>
+</UserControl>

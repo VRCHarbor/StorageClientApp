@@ -12,9 +12,9 @@
         </Grid.ColumnDefinitions>
         <ListBox Margin="20,20,20,76">
             <Label Content="Артикул продавца" Height="32" Width="153"/>
-            <TextBox x:Name="ArticulSellerCodeInput" TextWrapping="Wrap" Text="TextBox" Width="162" Height="26"/>
+            <TextBox x:Name="ArticulSellerCodeInput" TextWrapping="Wrap" Text="{Binding Path=ArticulSellerCode}" Width="162" Height="26"/>
             <Label Content="Название товара"/>
-            <TextBox x:Name="ArticulNameInput" TextWrapping="Wrap" Text="TextBox" Width="162" Height="26"/>
+            <TextBox x:Name="ArticulNameInput" TextWrapping="Wrap" Text="{Binding Path=ArticulName}" Width="162" Height="26"/>
 
         </ListBox>
         <Button x:Name="SaveBtn" Content="Сохранить" Margin="0,0,10,10" HorizontalAlignment="Right" Width="94" Height="31" VerticalAlignment="Bottom" Click="Button_Click"/>

@@ -2,5 +2,5 @@
 
 public abstract class BaseEntity<T> where T : struct
 {
-    public required T Id { get; set; } = default;
+    public T Id { get; set; } = default;
 }

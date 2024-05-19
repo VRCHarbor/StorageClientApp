@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StorageDBO.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,18 +23,19 @@ namespace StorageUserClientElementsLib
     public partial class ArticulWithCountViewModelEdit : UserControl
     {
 
-        public int Count { get; set; } = 24;
-        public string ArticulSellerCode { get; set; } = "ABOBA";
+        RecordCount RecordCount { get; set; }
+
+        public int Count { get => RecordCount.Count; set => RecordCount.Count = value; }
+        public string ArticulSellerCode { get => RecordCount.Articul.ArticulSellerCode; }
 
         public ArticulWithCountViewModelEdit()
         {
             InitializeComponent();
         }
 
-        public ArticulWithCountViewModelEdit(string name, int value) : this()
+        public ArticulWithCountViewModelEdit(RecordCount rc, bool RecordIn) : this()
         {
-            ArticulSellerCode = name;
-            Count = value;
+            RecordCount = rc;
         }
 
         private void CountLabel_PreviewTextInput(object sender, TextCompositionEventArgs e)

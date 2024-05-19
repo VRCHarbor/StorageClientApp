@@ -41,9 +41,8 @@
                 </ListBoxItem>
                 <ListBoxItem>
                     <Grid>
-                        <Button x:Name="CreateArticulBtn" Content="Добавить артикул" Margin="0,0,-14,-28" Click="Button_Click"></Button>
-                        <Button x:Name="CreateRecordBtn" Content="Создать запись" Margin="122,0,-141,-28"></Button>
-                        <Button x:Name="ViewRecordsBtn" Content="Просмотр записей" Margin="0,33,-14,-61"/>
+                        <Button x:Name="ArticlesViewBtn" Content="Артикулы" Margin="0,0,-14,-28" Click="ArticlesViewBtn_Click"></Button>
+                        <Button x:Name="RecordsViewBtn" Content="Просмотр записей" Margin="0,33,-14,-61" Click="RecordsViewBtn_Click"/>
                     </Grid>
                 </ListBoxItem>
             </ListBox>

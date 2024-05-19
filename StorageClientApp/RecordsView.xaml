@@ -1,0 +1,19 @@
+﻿<Window x:Class="StorageClientApp.RecordsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StorageClientApp"
+        mc:Ignorable="d"
+        Title="RecordsView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="184*"/>
+            <RowDefinition Height="33*"/>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="RecordTypeSwitch" HorizontalAlignment="Left" Margin="39,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="164" d:ItemsSource="{d:Binding Path=Types}" SelectionChanged="RecordTypeSwitch_SelectionChanged"/>
+        <ListBox x:Name="RecordsViewList" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button x:Name="CloseBtn" Content="Закрыть" HorizontalAlignment="Left" Margin="660,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="130"/>
+
+    </Grid>
+</Window>

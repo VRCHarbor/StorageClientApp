@@ -4,7 +4,7 @@ namespace StorageDBO.Entities;
 
 public class Articul : BaseEntity<int>
 {
-    public required string ArticulSellerCode { get; set; }
+    public string ArticulSellerCode { get; set; }
     public string? ArticulName { get; set; }
     public string? ArticulImage { get; set; }
 
